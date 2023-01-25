@@ -12,6 +12,8 @@ plt.plot(distance, I_436, 'bo--', label="436 nm")
 plt.xlabel("Distance from Probe to Sensor (mm)")
 plt.ylabel("Intensity (W/cm^2)")
 plt.title("Probe UV Intensity")
+
 plt.legend()
+plt.grid(which='major')
 
 plt.show()
