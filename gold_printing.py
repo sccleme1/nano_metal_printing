@@ -12,8 +12,10 @@ def vial(chemical, name, number, experiment):
     return mass, mol_choice, volume, ratio #ratio is in mol/L
 
 if __name__ == "__main__":
+
+    plan = input("Which plan is this? ")
     
-    with open("Gold (I) Chloride Experiment Plan.csv", 'w', newline='') as csvfile:
+    with open("Gold (I) Chloride Experiment Plan " + plan + ".csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, dialect='excel', delimiter=',')
 
         mass_initial = float(input(f"Enter starting mass of AuCl in grams: "))
@@ -35,21 +37,28 @@ if __name__ == "__main__":
 
             #Allylamine
             Aam_molarity = 13.33
-            Aam_mol = float(input("Vial 3 Allylamine molarity in mM: "))
-            Aam_vial = float(input("Vial 3 total volume in mL: "))
-            irgacure = float(input("Vial 3a irgacure in g: "))
-            Aam_volume = Aam_vial/Aam_molarity
+            Aam_mol = float(input("\tVial 3 Allylamine molarity in mM: "))
+            Aam_vial = float(input("\tVial 3 total volume in mL: "))
+            irgacure = float(input("\tVial 3a irgacure in g: "))
+            Aam_volume = Aam_vial*((Aam_mol*0.001)/Aam_molarity)
             Aam_water = Aam_vial - Aam_volume
             writer.writerow([3, "Allylamine", "1.0 M", str(round(Aam_volume, 3))+" mL", round(Aam_water, 3)])
             writer.writerow(["3a", "PAAM", "-", str(irgacure*1000)+" mg Irg", "-"])
             writer.writerow(["Precursor", "Vial 1 [uL]", "Vial 2 [uL]", "Vial 3a [uL]", "DI Water [uL]", "Total [uL]"])
             vial_1 = float(input("Enter volume of Vial 1 used [uL]: "))
-            vial_2 = float(input("Enter volume of Vial 2 used [uL]: "))
+            vial_2 = 0.0
+            if NaCit_YN =="Y":
+                vial_2 = float(input("Enter volume of Vial 2 used [uL]: "))
             vial_3a = float(input("Enter volume of Vial 3a used [uL]: "))
             DI_water = float(input("Enter volume of DI water added [uL]: "))
             total_precursor = vial_1+vial_2+vial_3a+DI_water
             writer.writerow([" ", vial_1, vial_2, vial_3a, DI_water, total_precursor])
-            # FIXME: Calculate the final concentration of chemicals in the precursor solution
+            # M1*L1 = M2*L2 where M is molarity, and L is volume in liters
+            gold_mol = 1000*(AuCl_mol*vial_1)/total_precursor
+            reducer_mol = 1000*(NaCit_mol*vial_2)/total_precursor
+            aam_mol = 1000*vial_3a/total_precursor
+            writer.writerow(["AuCl [mM]", "NaCit [mM]", "PAAM [mM]"])
+            writer.writerow([round(gold_mol, 3), round(reducer_mol, 3), round(aam_mol, 3)])
 
             mass_initial -= AuCl_mass
             print()
