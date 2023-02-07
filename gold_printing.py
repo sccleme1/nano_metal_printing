@@ -8,7 +8,7 @@ def vial(chemical, name, number, experiment):
     volume = mol/mol_choice
     volume = volume*1000
     ratio = mol/volume
-    #print(name, "with", mass, "g needs", round(volume, 3), "mL water.")
+    print(f"\t-->", name, "with", mass, "g needs", round(volume, 3), "mL water.")
     return mass, mol_choice, volume, ratio #ratio is in mol/L
 
 if __name__ == "__main__":
@@ -42,6 +42,7 @@ if __name__ == "__main__":
             irgacure = float(input("\tVial 3a irgacure in g: "))
             Aam_volume = Aam_vial*((Aam_mol*0.001)/Aam_molarity)
             Aam_water = Aam_vial - Aam_volume
+            print(f"\t--> You need to add", str(round(Aam_volume, 3)), "mL of AAM to", str(round(Aam_water, 3)), "mL water.")
             writer.writerow([3, "Allylamine", "1.0 M", str(round(Aam_volume, 3))+" mL", round(Aam_water, 3)])
             writer.writerow(["3a", "PAAM", "-", str(irgacure*1000)+" mg Irg", "-"])
             writer.writerow(["Precursor", "Vial 1 [uL]", "Vial 2 [uL]", "Vial 3a [uL]", "DI Water [uL]", "Total [uL]"])
