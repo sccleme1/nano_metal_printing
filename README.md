@@ -1,2 +1,3 @@
-# nano_metal_printing
-Nanoscience &amp; Biotechnology Lab - 3D Metal Printing Group
+Nanoscience and Biotechnology Lab
+
+These scripts are meant to be used for research experiments only. 

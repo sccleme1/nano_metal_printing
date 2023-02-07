@@ -13,7 +13,7 @@ def vial(chemical, name, number, experiment):
 
 if __name__ == "__main__":
 
-    plan = input("Which plan is this? ")
+    plan = input("Enter plan number: ")
     
     with open("Gold (I) Chloride Experiment Plan " + plan + ".csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, dialect='excel', delimiter=',')
