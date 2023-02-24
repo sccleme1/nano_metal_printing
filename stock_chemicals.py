@@ -14,6 +14,7 @@ molmass = {"H": 1.00784,
 # metal salts:
 AgNO3 = molmass["Ag"] + molmass["N"] + 3*molmass["O"]
 AuCl = molmass["Au"] + molmass["Cl"]
+HAuCl4_3H2O = 7*molmass["H"] + molmass["Au"] + 3*molmass["O"] + 4*molmass["Cl"]
 NH4_2PtCl4 = 2*molmass["N"] + 8*molmass["H"] + molmass["Pt"] + 4*molmass["Cl"]
 C6FeN3O12_3H2O = 6*molmass["C"] + 15*molmass["O"] + 18*molmass["H"] + molmass["Fe"] + 3*molmass['N'] #FIXME: wrong MW
 # reducing agent:
